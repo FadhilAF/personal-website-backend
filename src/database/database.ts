@@ -22,5 +22,5 @@ async function connectToDatabase() {
 };
 
 export default {
-  connectToDatabase: connectToDatabase,
+  connectToDatabase
 };

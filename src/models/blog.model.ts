@@ -1,6 +1,16 @@
-import mongoose from "mongoose";
+import { Types, Schema, model } from "mongoose";
 
-const blogSchema = new mongoose.Schema({
+interface IBlog {
+  title: string;
+  description: string;
+  category: string;
+  cover: string;
+  content: Record<string, string | string[]>;
+  published: boolean;
+  authorId: Types.ObjectId;
+}
+
+const blogSchema = new Schema<IBlog>({
   title: {
     type: String,
     required: true,
@@ -9,18 +19,31 @@ const blogSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  date: {
-    type: Date,
+  category: {
+    type: String,
     required: true,
   },
   cover: {
     type: String,
     required: true,
   },
-  content: {
-    type: String,
-    required: true
+  content: [{
+    component: String,
+    words: [{
+      type: String,
+    }]
+  }],
+  published: {
+    type: Boolean,
+    required: true,
   },
-});
+  authorId: {
+// https://stackoverflow.com/questions/18001478/referencing-another-schema-in-mongoose
+    type: Schema.Types.ObjectId,
+    required: true,
+    ref: "User"
+  },
+//timestamps utk auto generate createdAt dan updatedAt
+}, { timestamps: true });
 
-export default mongoose.model("Blog", blogSchema);
+export default model<IBlog>("Blog", blogSchema);
