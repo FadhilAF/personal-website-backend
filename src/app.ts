@@ -29,6 +29,7 @@ const app = express();
 
 // https://stackoverflow.com/a/23426060/13673444
 app.set("trust proxy", 1);
+
 try {
   // https://stackoverflow.com/a/45890875/13673444
   app.use(
@@ -38,7 +39,10 @@ try {
       // origin: true,
 
       //biar terimo request dari link ini bae
-      origin: process.env.FRONTEND_APP_URL || "http://localhost:3000",
+      origin:
+        process.env.FRONTEND_APP_URL || process.env.FRONTEND_APP_URL_2 || process.env.FRONTEND_APP_URL_3
+          ? [process.env.FRONTEND_APP_URL, process.env.FRONTEND_APP_URL_2, process.env.FRONTEND_APP_URL_3].filter((v)=>v) as string[]
+          : "http://localhost:3000",
     })
   );
 
@@ -48,10 +52,10 @@ try {
   app.use(
     session({
       secret: process.env.DEV_SESSION_SECRET as string,
-      cookie: { 
+      cookie: {
         maxAge: 1000 * 60 * 60 * 24,
         // https://stackoverflow.com/a/66553425/13673444
-        sameSite: process.env.NODE_ENV === "production" ? 'none' : 'lax', // must be 'none' to enable cross-site delivery
+        sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // must be 'none' to enable cross-site delivery
         secure: process.env.NODE_ENV === "production", // must be true if sameSite='none'
       },
       store: sessionStore,
@@ -82,7 +86,7 @@ try {
   console.log(error);
 }
 
-const PORT: string = process.env.PORT as string || "5000";
+const PORT: string = (process.env.PORT as string) || "5000";
 
 db.connectToDatabase()
   .then(() => {
