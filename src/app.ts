@@ -32,7 +32,7 @@ try {
   app.use(
     cors({
       credentials: true,
-      origin: process.env.DEV_ORIGIN || "http://localhost:3000",
+      origin: true,
     })
   );
 
