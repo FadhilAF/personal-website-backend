@@ -23,13 +23,18 @@ declare module "express-session" {
   }
 }
 
-dotenv.config({ path: __dirname + "/.env"});
+dotenv.config({ path: __dirname + "/.env" });
 
 const app = express();
 
 try {
   // https://stackoverflow.com/a/45890875/13673444
-  app.use(cors({credentials: true, origin: "http://localhost:3000"}));
+  app.use(
+    cors({
+      credentials: true,
+      origin: process.env.DEV_ORIGIN || "http://localhost:3000",
+    })
+  );
 
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true, limit: "100mb" }));
@@ -50,15 +55,18 @@ try {
   const sessionCheckMiddleware: express.RequestHandler = (req, res, next) => {
     console.log(req.user);
     next();
-  }
-  app.use(sessionCheckMiddleware)
+  };
+  app.use(sessionCheckMiddleware);
+
+  app.get("/", (req, res) => {
+    res.send("Hello World!");
+  });
 
   app.use("/auth", authRoutes);
   app.use("/blog", blogRoutes);
   app.use("/token", tokenRoutes);
 
   app.use(errorHandler);
-
 } catch (error: unknown) {
   console.log(error);
 }
