@@ -33,7 +33,10 @@ try {
     cors({
       credentials: true,
       //biar request dari mano bae diterimo
-      origin: true,
+      // origin: true,
+
+      //biar terimo request dari link ini bae
+      origin: process.env.FRONTEND_APP_URL || "http://localhost:3000",
     })
   );
 
@@ -43,7 +46,12 @@ try {
   app.use(
     session({
       secret: process.env.DEV_SESSION_SECRET as string,
-      cookie: { maxAge: 1000 * 60 * 60 * 24 },
+      cookie: { 
+        maxAge: 1000 * 60 * 60 * 24,
+        // https://stackoverflow.com/a/66553425/13673444
+        sameSite: process.env.NODE_ENV === "production" ? 'none' : 'lax', // must be 'none' to enable cross-site delivery
+        secure: process.env.NODE_ENV === "production", // must be true if sameSite='none'
+      },
       store: sessionStore,
       resave: true,
       saveUninitialized: false,
@@ -72,7 +80,7 @@ try {
   console.log(error);
 }
 
-const PORT: string = process.env.PORT || "5000";
+const PORT: string = process.env.PORT as string || "5000";
 
 db.connectToDatabase()
   .then(() => {
