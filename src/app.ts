@@ -27,6 +27,8 @@ dotenv.config({ path: __dirname + "/.env" });
 
 const app = express();
 
+// https://stackoverflow.com/a/23426060/13673444
+app.set("trust proxy", 1);
 try {
   // https://stackoverflow.com/a/45890875/13673444
   app.use(
