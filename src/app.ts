@@ -32,6 +32,7 @@ try {
   app.use(
     cors({
       credentials: true,
+      //biar request dari mano bae diterimo
       origin: true,
     })
   );
