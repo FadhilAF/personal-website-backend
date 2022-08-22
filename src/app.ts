@@ -36,13 +36,13 @@ try {
     cors({
       credentials: true,
       //biar request dari mano bae diterimo
-      // origin: true,
+      origin: true,
 
       //biar terimo request dari link ini bae
-      origin:
-        process.env.FRONTEND_APP_URL || process.env.FRONTEND_APP_URL_2 || process.env.FRONTEND_APP_URL_3
-          ? [process.env.FRONTEND_APP_URL, process.env.FRONTEND_APP_URL_2, process.env.FRONTEND_APP_URL_3].filter((v)=>v) as string[]
-          : "http://localhost:3000",
+      // origin:
+      //   process.env.FRONTEND_APP_URL || process.env.FRONTEND_APP_URL_2 || process.env.FRONTEND_APP_URL_3
+      //     ? [process.env.FRONTEND_APP_URL, process.env.FRONTEND_APP_URL_2, process.env.FRONTEND_APP_URL_3].filter((v)=>v) as string[]
+      //     : "http://localhost:3000",
     })
   );
 
@@ -52,6 +52,7 @@ try {
   app.use(
     session({
       secret: process.env.DEV_SESSION_SECRET as string,
+      // https://stackoverflow.com/a/14473557/13673444
       proxy: true,
       cookie: {
         maxAge: 1000 * 60 * 60 * 24,
