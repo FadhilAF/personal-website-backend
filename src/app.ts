@@ -52,6 +52,7 @@ try {
   app.use(
     session({
       secret: process.env.DEV_SESSION_SECRET as string,
+      proxy: true,
       cookie: {
         maxAge: 1000 * 60 * 60 * 24,
         // https://stackoverflow.com/a/66553425/13673444
