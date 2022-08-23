@@ -36,13 +36,15 @@ try {
     cors({
       credentials: true,
       //biar request dari mano bae diterimo
-      origin: true,
+      // https://stackoverflow.com/a/71071725/13673444
+      // origin: true,
 
       //biar terimo request dari link ini bae
       // origin:
       //   process.env.FRONTEND_APP_URL || process.env.FRONTEND_APP_URL_2 || process.env.FRONTEND_APP_URL_3
       //     ? [process.env.FRONTEND_APP_URL, process.env.FRONTEND_APP_URL_2, process.env.FRONTEND_APP_URL_3].filter((v)=>v) as string[]
       //     : "http://localhost:3000",
+      origin: process.env.FRONTEND_APP_URL || "http://localhost:3000",
     })
   );
 
