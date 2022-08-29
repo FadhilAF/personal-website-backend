@@ -55,7 +55,7 @@ try {
       proxy: true,
       cookie: {
         // ad di stak overflow ktny harus specify path kalo nk cookie ny muncul di dev mode.. (pdhl nilai defaultny ini)
-        path: "/",
+        domain: "www.fadhilaf.my.id",
 
         maxAge: 1000 * 60 * 60 * 24,
         // https://stackoverflow.com/a/66553425/13673444
