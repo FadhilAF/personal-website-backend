@@ -1,7 +1,7 @@
 import express from "express";
 const router = express.Router();
 
-import blogController from "../controllers/blog.controller";
+import blogController from "../controllers/blog";
 
 router.get("/:id", blogController.getBlogPreview);
 

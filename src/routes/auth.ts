@@ -1,7 +1,7 @@
 import express from "express";
 const router = express.Router();
 
-import authController from "../controllers/auth.controller";
+import authController from "../controllers/auth";
 
 router.get("/profile/:id", authController.getProfile);
 router.get("/login", authController.getAuthenticatedData);

@@ -10,9 +10,9 @@ import sessionStore from "./database/session";
 
 import sessionReadMiddleware from "./middlewares/sessionRead";
 
-import authRoutes from "./routers/auth.routes";
-import blogRoutes from "./routers/blog.routes";
-import tokenRoutes from "./routers/token.routes";
+import authRoutes from "./routes/auth";
+import blogRoutes from "./routes/blog";
+import tokenRoutes from "./routes/token";
 
 import errorHandler from "./middlewares/errorHandler";
 

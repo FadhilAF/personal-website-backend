@@ -1,7 +1,7 @@
 import express from "express";
 const router = express.Router();
 
-import tokenController from "../controllers/token.controller";
+import tokenController from "../controllers/token";
 
 router.post("/", tokenController.postToken);
 
