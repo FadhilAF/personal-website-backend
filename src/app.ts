@@ -56,8 +56,8 @@ try {
       cookie: {
         maxAge: 1000 * 60 * 60 * 24,
         // https://stackoverflow.com/a/66553425/13673444
-        // sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // must be 'none' to enable cross-site delivery
-        // secure: process.env.NODE_ENV === "production", // must be true if sameSite='none'
+        sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // must be 'none' to enable cross-site delivery
+        secure: process.env.NODE_ENV === "production", // must be true if sameSite='none'
       },
       store: sessionStore,
       resave: true,
