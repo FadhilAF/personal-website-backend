@@ -54,6 +54,9 @@ try {
       // https://stackoverflow.com/a/14473557/13673444
       proxy: true,
       cookie: {
+        // ad di stak overflow ktny harus specify path kalo nk cookie ny muncul di dev mode.. (pdhl nilai defaultny ini)
+        path: "/",
+
         maxAge: 1000 * 60 * 60 * 24,
         // https://stackoverflow.com/a/66553425/13673444
         sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // must be 'none' to enable cross-site delivery
