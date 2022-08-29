@@ -54,7 +54,7 @@ try {
       // https://stackoverflow.com/a/14473557/13673444
       proxy: true,
       cookie: {
-        maxAge: Date.now() + (1000 * 60 * 60 * 24),
+        maxAge: 1000 * 60 * 60 * 24,
         // https://stackoverflow.com/a/66553425/13673444
         sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // must be 'none' to enable cross-site delivery
         secure: process.env.NODE_ENV === "production", // must be true if sameSite='none'
