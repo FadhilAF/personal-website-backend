@@ -1,10 +1,7 @@
 import User from "../models/auth.model";
 import Token from "../models/token.model";
 import bcrypt from "bcrypt";
-import dotenv from "dotenv";
 import { RequestHandler, Request, Response, NextFunction } from "express";
-
-dotenv.config({ path: __dirname + "../.env" });
 
 const getProfile = (
   //ngedefine type params disini (di type req) dan cak ini:

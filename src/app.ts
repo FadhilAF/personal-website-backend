@@ -1,7 +1,7 @@
 import express from "express";
 import session from "express-session";
 import cors from "cors";
-import dotenv from "dotenv";
+import "dotenv/config";
 import bodyParser from "body-parser";
 
 import { ObjectId } from "bson";
@@ -22,8 +22,6 @@ declare module "express-session" {
     userId: ObjectId;
   }
 }
-
-dotenv.config({ path: __dirname + "/.env" });
 
 const app = express();
 

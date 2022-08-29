@@ -15,8 +15,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const auth_model_1 = __importDefault(require("../models/auth.model"));
 const token_model_1 = __importDefault(require("../models/token.model"));
 const bcrypt_1 = __importDefault(require("bcrypt"));
-const dotenv_1 = __importDefault(require("dotenv"));
-dotenv_1.default.config({ path: __dirname + "../.env" });
 const getProfile = (
 //ngedefine type params disini (di type req) dan cak ini:
 req, res, next) => {
